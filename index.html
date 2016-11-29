@@ -31,7 +31,7 @@
             <div class="form-group">
               <input type="text" class="form-control" id="newToDo">
             </div>
-            <em class="pull-right">
+            <div class="pull-right action-buttons">
               <button type="button" class="btn btn-primary">
                 <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                 New
@@ -40,14 +40,25 @@
                 <span class="glyphicon glyphicon-remove-circle"></span>
                 Remove all
               </button>
-            </em>
+            </div>
           </form>
           <br>
-          <ul class="list-group">
+          <ul class="list-group checked-list-box">
             <li class="list-group-item" ng-repeat="toDo in toDos">
-              <h4 class="list-group-item-heading">{{toDo.name}}
-              </h4>
-              <p class="list-group-item-text">{{toDo.description}}</p>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" value="">
+                  {{toDo.name}}
+                  <span ng-show="toDo.completed" class="label label-success">Completed</span>
+                </label>
+                <div class="pull-right action-buttons">
+
+                  <a href="#">
+                  <span class="glyphicon glyphicon-remove-circle"></span>
+                  </a>
+                </div>
+
+              </div>
             </li>
           </ul>
 

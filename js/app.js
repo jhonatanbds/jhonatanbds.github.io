@@ -3,7 +3,7 @@ app.controller('ToDoController', function($scope) {
   $scope.toDos = [{
     name: "Prova de calculo",
     description: "Prova doprimeiro estagio sobre limites",
-    completed: false
+    completed: true
   }, {
     name: "Jogo de tenis",
     description: "Segundo jogo 8 torneio da UFCG",
