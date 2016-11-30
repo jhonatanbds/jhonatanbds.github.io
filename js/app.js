@@ -17,7 +17,8 @@ app.controller('ToDoController', function($scope) {
 	  return (100 * ($scope.toDosCompleted()/$scope.toDos.length)).toFixed(1);
   };
 
-  $scope.addToDo = function() {
+
+  $scope.addToDo = function() {    
 	if ($scope.newToDo == "")
 		alert("Não é possível adicionar uma tarefa vazia.");
 	else

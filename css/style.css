@@ -27,6 +27,10 @@
         }
       }
 
+      .push {
+        height: auto;
+        min-height: 20px;
+      }
       .container {
         width: auto;
         max-width: 800px;
