@@ -1,89 +1,105 @@
 <!DOCTYPE html>
 <html ng-app="toDoList" lang="pt-br">
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>DOit</title>
-	<!-- Bootstrap CSS -->
-	<link href="css/bootstrap.min.css" rel="stylesheet">
-	<link href="css/style.css" rel="stylesheet">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DOit</title>
+<!-- Bootstrap CSS -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 	<div class="container" ng-controller="ToDoController" id="wrap">
 		<div class="page-header">
-			<h1>DOit</h1>
+			<h1>
+				DOit <small>Lista de tarefas.</small>
+			</h1>
 		</div>
 		<div class="row">
-			<div role="main" class="col-md-8">
-				<h2>Hello, Bootstrap!</h2>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin augue erat, ullamcorper pulvinar malesuada ultricies, mollis non magna. Curabitur quis nisi ut ligula ultricies gravida. Suspendisse elit justo, vulputate in facilisis sed, tristique id nisi. Maecenas risus quam, suscipit eu vehicula ut, ultricies in neque. Donec gravida tristique turpis ut interdum. Donec lacinia nisi id enim lacinia sit amet facilisis est ullamcorper. Curabitur ipsum libero, sollicitudin nec rhoncus quis, congue non ipsum. Etiam at eros dolor. Mauris non erat vitae leo faucibus fermentum. In consectetur, diam eget faucibus dignissim, urna justo pretium dui, nec eleifend neque velit vitae odio. Nam et tristique turpis. In dictum commodo sem ut dignissim. In convallis quam non tortor posuere sed ornare nulla pulvinar. Suspendisse placerat turpis in tortor rutrum nec mollis nulla posuere. Integer tellus est, rhoncus ut sagittis eget, mattis a velit. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Quisque gravida posuere orci nec ornare. Donec elit nulla, aliquam eget cursus a, commodo sed odio.</p>
+			
+			
+			
+			<div class="col-md-9">
+					<h3>Aumente sua lista de TODO's</h3>
+					<br>
 				<form class="form-inline">
-					<div class="row">
-						<h3>Add new TODO's</h3>
-					</div>
-					<div class="row">
-						<div class="form-group">
-							<input type="text" class="form-control" ng-model="newToDo" ng-model-instant>
-						</div>
-						<div class="pull-right action-buttons">
-							<button type="button" class="btn btn-primary" ng-click="addToDo()">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-							New
+					<div class="input-group">
+						<input type="text" class="form-control" placeholder="Nova tarefa"
+							ng-model="newToDo" ng-model-instant> <span
+							class="input-group-btn">
+							<button type="submit" class="btn btn-primary"
+								ng-click="addToDo()">
+								<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 							</button>
-              <div class="btn-group">
-                <button type="button" class="btn btn-danger" ng-click="clear()">
-                  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                  Clear
-                </button>
-                <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <span class="caret"></span>
-                  <span class="sr-only">Toggle Dropdown</span>
-                </button>
-                <ul class="dropdown-menu">
-                  <li><a href ng-click="clearCompleted();">Clear only completed</a></li>
-                </ul>
-              </div>
-						</div>
+						</span>
 					</div>
 				</form>
-				<br>
+			</div>
+			<br>
+			<div class="col-md-3">
+				<div class="pull-right action-buttons">
+					<div class="btn-group">
+						<button type="button" class="btn btn-danger" ng-click="clear()">
+							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+							Limpar
+						</button>
+						<button type="button" class="btn btn-danger dropdown-toggle"
+							data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="caret"></span> <span class="sr-only">Toggle
+								Dropdown</span>
+						</button>
+						<ul class="dropdown-menu">
+							<li><a href ng-click="clearCompleted();">Limpar apenas
+									completas</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+
+
+
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-8">
+				<div class="progress">
+					<div class="progress-bar progress-bar-striped active" 
+  role="progressbar" aria-valuenow="{{getPercentage()}}" aria-valuemin="0" 
+  aria-valuemax="100" ng-style="{width : ( completedPerCent() + '%' ) }">Progresso({{completedPerCent()}}%)</div>
+				</div>
 				<ul class="list-group checked-list-box">
 					<li class="list-group-item" ng-repeat="toDo in toDos">
 						<div class="checkbox">
-							<label>
-							<input type="checkbox" ng-model="toDo.completed">
-							{{toDo.name}}
-							<span ng-show="toDo.completed" class="label label-success">Completed</span>
+							<label> <input type="checkbox" ng-model="toDo.completed">
+								{{toDo.name}} <span ng-show="toDo.completed"
+								class="label label-success">Completo</span>
 							</label>
 							<div class="pull-right action-buttons">
-								<a href="#" ng-click="remove(toDo)">
-								<span class="glyphicon glyphicon-remove-circle"></span>
+								<a href ng-click="removeToDo($index);"> <span
+									class="glyphicon glyphicon-trash"></span>
 								</a>
 							</div>
 						</div>
 					</li>
 				</ul>
 			</div>
-			<aside role="complementary" class="col-md-4">
-				<h3>Aqui mais um pequeno titulo</h3>
-				<p>CERTO, Aquele texto inicial agora foi deslocado para uma coluna 8/12 enquanto esse texto em que escrevo esta ocupando os outros 4/12 produzindo assim um design de 2 colunas.</p>
-				<div class="progress">
-					<div class="progress-bar progress-bar-striped active" role="progressbar"
-						aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%">
-						40%
-					</div>
-				</div>
-			</aside>
+			<div class="col-md-4">
+				<p>
+					Organize e gerencie suas tarefas e compromissos com <strong
+						class="badge">DOit</strong> e tenha um feedback instantâneo do seu
+					progresso.
+				</p>
+			</div>
 		</div>
-		<div id="push"></div>
 	</div>
 	<div id="footer">
 		<div class="container">
 			<p class="muted credit">
-				Made with <i class="glyphicon glyphicon-heart"></i> and a lot of effort by
-				<a href="https://github.com/jhonatanbds">Jhonatan Batista</a>.
-				<em class="pull-right">Application made for SI 1 - Lab 02 at UFCG</em>
+				Made with <i class="glyphicon glyphicon-heart"></i> and a lot of
+				effort by <a href="https://github.com/jhonatanbds">Jhonatan
+					Batista</a>. <em class="pull-right">Application made for SI 1 -
+					Lab 02 at UFCG</em>
 			</p>
 		</div>
 	</div>
