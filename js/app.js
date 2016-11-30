@@ -1,12 +1,15 @@
 var app = angular.module('toDoList', []);
 app.controller('ToDoController', function($scope) {
-  $scope.toDos = [{
-    name: "Prova de calculo",
-    description: "Prova doprimeiro estagio sobre limites",
-    completed: true
-  }, {
-    name: "Jogo de tenis",
-    description: "Segundo jogo 8 torneio da UFCG",
-    completed: false
-  }];
+  $scope.toDos = [];
+  $scope.addToDo = function() {
+    $scope.toDos.push({name:$scope.newToDo, completed:false});
+  };
+  $scope.clear = function() {
+    $scope.toDos = [];
+  };
+  $scope.clearCompleted = function() {
+    $scope.toDos = _.filter($scope.toDos, function(toDo) {
+      return !toDo.completed;
+    })
+  };
 });
