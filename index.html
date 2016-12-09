@@ -10,11 +10,27 @@
 <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
+
+
 	<div class="container" ng-controller="ToDoController" id="wrap">
 		<div class="page-header">
-			<h1>
-				DOit <small>Lista de tarefas.</small>
-			</h1>
+
+				<h1 class="float-left">
+					DOit <small>Lista de tarefas.</small>
+				</h1>
+				<br>
+				<div class="dropdown pull-right float-left">
+	  <button class="btn btn-default-lg dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+		  Menu
+	    <span class="caret"></span>
+	  </button>
+	  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+	    <li><a href="#"><span class="glyphicon glyphicon-home"></span> Home</a></li>
+			<li><a target="_blank" href="https://github.com/jhonatanbds"><span class="glyphicon glyphicon-user"></span> Contato</a></li>
+	  </ul>
+	</div>
+	<div class="clearfix"></div>
+
 		</div>
 		<div class="row">
 			<div class="col-md-9">
@@ -35,8 +51,7 @@
 			</div>
 			<br>
 			<div class="col-md-3">
-				<div class="pull-right action-buttons">
-					<div class="btn-group">
+					<div class="pull-right btn-group">
 						<button type="button" class="btn btn-danger" ng-click="clear()">
 							<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 							Limpar
@@ -51,7 +66,6 @@
 									completas</a></li>
 						</ul>
 					</div>
-				</div>
 			</div>
 		</div>
 		<br>
@@ -60,7 +74,9 @@
 				<div class="progress">
 					<div class="progress-bar progress-bar-striped active"
   role="progressbar" aria-valuenow="{{getPercentage()}}" aria-valuemin="0"
-  aria-valuemax="100" ng-style="{width : ( completedPerCent() + '%' ) }">Progresso({{completedPerCent()}}%)</div>
+  aria-valuemax="100" ng-style="{width : ( completedPerCent() + '%' ) }">
+						<span ng-show="completedPerCent() > 0">Progresso({{completedPerCent()}}%)</span>
+					</div>
 				</div>
 				<ul class="list-group checked-list-box">
 					<li class="list-group-item" ng-repeat="toDo in toDos">
@@ -92,12 +108,14 @@
 		<div class="container">
 			<p class="muted credit">
 				Made with <i class="glyphicon glyphicon-heart"></i> and a lot of
-				effort by <a href="https://github.com/jhonatanbds">Jhonatan
+				effort by <a target="_blank" href="https://github.com/jhonatanbds">Jhonatan
 					Batista</a>. <em class="pull-right">Application made for SI 1 -
 					Lab 02 at UFCG</em>
 			</p>
 		</div>
 	</div>
+
+
 	<script type="text/javascript" src="js/angular.min.js"></script>
 	<script type="text/javascript" src="js/app.js"></script>
 	<script src="js/jquery.min.js"></script>
